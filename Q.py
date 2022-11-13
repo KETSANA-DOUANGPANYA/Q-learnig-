@@ -14,7 +14,7 @@ class Agent():
                 self.decay_factor = 0.999
                 self.reward_for_each_episode=[]
 
-        def play(self,env,number_of_episode=100):
+        def play(self,env,number_of_episode=20):
                 for i_episode in range(number_of_episode):
                         print("Episode {} of {}".format(i_episode+1,number_of_episode))
                         state = env.reset()
