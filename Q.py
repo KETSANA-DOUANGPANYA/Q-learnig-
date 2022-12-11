@@ -16,7 +16,7 @@ class Agent():
                 self.decay_factor = 0.999
                 self.reward_for_each_episode=[]
 
-        def play(self,env,number_of_episode=50):
+        def play(self,env,number_of_episode=10):
                 for i_episode in range(number_of_episode):
                         print("Episode {} of {}".format(i_episode+1,number_of_episode))
                         state = env.reset()
@@ -52,7 +52,7 @@ class Agent():
 
         def __getExpectedReward(self, state):
                 return np.max(self.q_table[state,:])
-env = gym.make('NChain-v0')
+env = gym.make('Capsule-v0')
 
 agent = Agent()
 

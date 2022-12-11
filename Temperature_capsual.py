@@ -1,3 +1,5 @@
+import gym
+import gym_toytext
 import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
@@ -50,13 +52,13 @@ class Agent():
     def __getExpectedReward(self, state):
         return np.max(self.q_table[state, :])
 
-# env = gym.make('NChain-v0')
+env = gym.make('Capsule-v0')
 
-# agent = Agent()
+agent = Agent()
 
-# agent.play(env)
+agent.play(env)
 
-# plt.plot(agent.reward_for_each_episode)
+plt.plot(agent.reward_for_each_episode)
 
 plt.title('Reward timeming')
 
