@@ -5,6 +5,8 @@ from tabulate import tabulate
 import matplotlib.pyplot as plt
 
 
+
+
 class Agent():
         def __init__(self):
                 self.q_table = np.zeros((5,2))
@@ -14,7 +16,7 @@ class Agent():
                 self.decay_factor = 0.999
                 self.reward_for_each_episode=[]
 
-        def play(self,env,number_of_episode=20):
+        def play(self,env,number_of_episode=50):
                 for i_episode in range(number_of_episode):
                         print("Episode {} of {}".format(i_episode+1,number_of_episode))
                         state = env.reset()
@@ -29,13 +31,14 @@ class Agent():
                                 action = self.__getActionWithHighestedReward(state)
                             new_state, reward, end_game, _ = env.step(action)
                             #update q table
+                            
                             self.q_table[state,action] += self.learning_rate * (reward + self.discount_factor * self.__getExpectedReward(new_state) - self.q_table[state,action])
                             total_reward += reward
                             state = new_state
                         self.reward_for_each_episode.append(total_reward)
                         print(tabulate(self.q_table, showindex="always", headers=["State","Action 0 (Forward 1 step)","Action1 (Back to 0)"]))
 
-        def __qTableIsEmpty(self, state):
+        def __qTableIsEmpty(self, state):  
                 return np.sum(self.q_table[state,:]) == 0
         
         def __probability(self, probability):
@@ -57,7 +60,7 @@ agent.play(env)
 
 plt.plot(agent.reward_for_each_episode)
 
-plt.title('Performance over time')
+plt.title('Reward timeming')
 
 plt.ylabel('Total reward')
 plt.xlabel('Episode')
